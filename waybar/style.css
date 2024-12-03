@@ -1,0 +1,64 @@
+@import "mocha.css";
+
+* {
+  font-family: Sarasa UI SC;
+  font-weight: bold;
+  font-size: 14px;
+  min-height: 0;
+}
+
+#waybar {
+  background-color: rgba(30, 30, 46, 0.7);
+  color: @text;
+}
+
+#workspaces {
+  background-color: @surface0;
+}
+
+#workspaces button {
+  color: @rosewater;
+  padding: 0.4rem;
+}
+
+#workspaces button.persistent {
+    color: @text;
+    padding: 0.4rem;
+}
+
+#workspaces button.empty {
+    color:@overlay1
+}
+
+#workspaces button.active {
+  color: @surface0;
+  background-color: @mauve;
+}
+
+#workspaces button:hover {
+  color: @green;
+  border-radius: 1rem;
+}
+
+#tray,
+#clock,
+#pulseaudio,
+
+#clock {
+  color: @blue;
+  border-radius: 0px 1rem 1rem 0px;
+  margin-right: 1rem;
+}
+
+
+#pulseaudio {
+  color: @maroon;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+#tray {
+  margin-right: 1rem;
+  border-radius: 1rem;
+}
