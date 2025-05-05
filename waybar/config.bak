@@ -4,26 +4,44 @@
     // -------------------------------------------------------------------------
 
     "layer": "top",
+
     "position": "top",
+
     "height": 25,
+
     "margin-bottom": 0,
 
+    "spacing": 5, // Gaps between modules (4px)
+
     "modules-left": [
+        //"custom/rofi",
         "hyprland/workspaces",
+        //"hyprland/submap",
         "temperature",
+        //"idle_inhibitor",
+        //"mpd"
+        "custom/spotify"
     ],
     "modules-center": [
+        //"hyprland/window"
         "clock#date",
         "custom/weather"
+        //"custom/gammastep"
     ],
     "modules-right": [
+        "backlight",
         "custom/storage",
         "memory",
         "cpu",
+        "battery",
+        //"pulseaudio",
         "wireplumber",
+        "custom/screenshot_t",
         "tray",
         "custom/power"
     ],
+
+
     // -------------------------------------------------------------------------
     // Modules
     // -------------------------------------------------------------------------
@@ -78,12 +96,13 @@
         "format-icons": ["", "", ""],
         "max-length": 7,
         "min-length": 7,
+        "on-click": "xsensors"
     },
 
     "memory": {
         "interval": 30,
         "format": "  {used:0.2f} / {total:0.0f} GB",
-        "on-click": "foot -e btop"
+        "on-click": "alacritty -e btop"
     },
 
     "battery": {
@@ -232,7 +251,7 @@
 
     "cpu": {
         "interval": 1,
-        "format": " {}%", // Icon: microchip
+        //"format": " {}%", // Icon: microchip
         "format": "{max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
         "max-length": 13,
         "min-length": 13
@@ -277,6 +296,7 @@
     },*/
 
     "hyprland/workspaces": {
+        "all-outputs": true,
         "format": "{name}",
         "format-icons": {
             "1": "一",
@@ -296,8 +316,6 @@
             "2": [],
             "3": [],
             "4": [],
-            "5": [],
-            "6": [],
         },
         "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
         "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
