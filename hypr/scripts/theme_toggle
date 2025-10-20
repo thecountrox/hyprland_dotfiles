@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# --- Fish Themes ---
+DARK_FISH_THEME="Catppuccin\ Mocha"
+LIGHT_FISH_THEME="Catppuccin\ Latte"
+
+# --- GTK Themes ---
+DARK_GTK_THEME="catppuccin-mocha-lavender-standard+default"
+LIGHT_GTK_THEME="catppuccin-latte-lavender-standard+default"
+
+# --- Foot Themes (must be full paths) ---
+# FOOT_DARK_THEME_PATH="$HOME/.config/foot/colors-dark"
+# FOOT_LIGHT_THEME_PATH="$HOME/.config/foot/colors-light"
+# FOOT_CONFIG_FILE_PATH="$HOME/.config/foot/foot.ini"
+
+# --- Wallpaper Paths (must be full path) ---
+DARK_WALLPAPER_PATH="/usr/share/wallpapers/cachyos-wallpapers/jellyfish.jpg"
+LIGHT_WALLPAPER_PATH="$HOME/Downloads/rose-pine-dawn-wallpaper.jpeg"
+
+# --- Waybar Theme ---
+DARK_WAYBAR_THEME="mocha.css"
+LIGHT_WAYBAR_THEME="latte.css"
+WAYBAR_CONFIG_PATH="$HOME/.config/waybar/config"
+
+# --- Neovim Theme ---
+DARK_NVIM_THEME="catppuccin-mocha"
+LIGHT_NVIM_THEME="catppuccin-latte"
+
+# --- Eza Theme ---
+DARK_EZA_THEME="$HOME/.config/eza/dark-theme.yml"
+LIGHT_EZA_THEME="$HOME/.config/eza/light-theme.yml"
+EZA_CONFIG_PATH="$HOME/.config/eza/theme.yml"
+
+# --- Get current GTK theme ---
+CURRENT_GTK_THEME=$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d "'")
+
+# --- Kill existing swaybg process ---
+pkill swaybg || true # || true prevents script error if swaybg isn't running
+
+# --- Toggle between themes ---
+if [ "$CURRENT_GTK_THEME" = "$DARK_GTK_THEME" ]; then
+    echo "Switching to Light Mode..."
+
+    # 1. Switch GTK
+    gsettings set org.gnome.desktop.interface gtk-theme "$LIGHT_GTK_THEME"
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+
+    # 2. Switch Foot
+    # sed -i "s|include=$FOOT_DARK_THEME_PATH|include=$FOOT_LIGHT_THEME_PATH|" "$FOOT_CONFIG_FILE_PATH"
+    
+    # 2. Switch Kitty
+    kitty +kitten themes --reload-in=all "Catppuccin-Latte"
+
+    # 3. Switch Wallpaper
+    swaybg -i "$LIGHT_WALLPAPER_PATH" &
+    
+    # 4. Switch Fish
+    echo y | fish -c "fish_config theme save $LIGHT_FISH_THEME"   
+
+    # 5. Switch Waybar
+    sed -i "s|$DARK_WAYBAR_THEME|include=$LIGHT_WAYBAR_THEME|" "$FOOT_CONFIG_FILE_PATH"
+
+    # 6. Switch Neovim
+    nvim -c "colorscheme $LIGHT_NVIM_THEME"
+
+    # 7. Switch EZA
+    ln -sf "$LIGHT_EZA_THEME" "$EZA_CONFIG_PATH"
+
+else
+    echo "Switching to Dark Mode..."
+
+    # 1. Switch GTK
+    gsettings set org.gnome.desktop.interface gtk-theme "$DARK_GTK_THEME"
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
+    # 2. Switch Foot
+    # sed -i "s|include=$FOOT_LIGHT_THEME_PATH|include=$FOOT_DARK_THEME_PATH|" "$FOOT_CONFIG_FILE_PATH"
+
+    # 2. Switch Kitty
+    kitty +kitten themes --reload-in=all "Catppuccin-Mocha"
+
+
+    # 3. Switch Wallpaper
+    swaybg -i "$DARK_WALLPAPER_PATH" &
+
+    # 4. Switch Fish
+    echo y | fish -c "fish_config theme save $DARK_FISH_THEME"
+
+    # 5. Switch Waybar
+    sed -i "s|include=$FOOT_DARK_THEME_PATH|include=$FOOT_LIGHT_THEME_PATH|" "$FOOT_CONFIG_FILE_PATH"
+
+    # 6. Switch Neovim
+    nvim -c "colorscheme $DARK_NVIM_THEME"
+
+    # 7.
+    ln -sf "$DARK_EZA_THEME" "$EZA_CONFIG_PATH"
+fi
