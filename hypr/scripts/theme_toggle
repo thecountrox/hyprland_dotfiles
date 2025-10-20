@@ -92,6 +92,6 @@ else
     # 6. Switch Neovim
     nvim -c "colorscheme $DARK_NVIM_THEME"
 
-    # 7.
+    # 7. Switch EZA
     ln -sf "$DARK_EZA_THEME" "$EZA_CONFIG_PATH"
 fi
