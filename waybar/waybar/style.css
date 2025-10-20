@@ -1,0 +1,158 @@
+@import "latte.css";
+
+* {
+  font-family:
+    "Geist", "Font Awesome 6 Free", FontAwesome, Roboto, Helvetica, Arial,
+    sans-serif;
+  font-size: 14px;
+  /* Slightly smaller font size */
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+#waybar {
+  background: transparent;
+  color: @text;
+  margin: 0;
+}
+
+#workspaces {
+  border-radius: 1rem;
+  margin: 0px;
+  background-color: @crust;
+  margin-left: 0rem;
+}
+
+#workspaces button {
+  color: @text;
+  border-radius: 1rem;
+  padding: 0.4rem;
+}
+
+#workspaces button.empty {
+  color: @overlay0;
+  border-style: none;
+}
+
+#workspaces button.active {
+  color: @crust;
+  border-radius: 1rem;
+  background-color: @text;
+  font-weight: bold;
+  border-style: none;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+#workspaces button:hover {
+  color: @text;
+  border-radius: 1rem;
+}
+
+#wireplumber {
+  margin: 0;
+  padding: 0;
+  background-color: @crust;
+}
+
+#custom-power {
+  background-color: @crust;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  margin-right: 0rem;
+}
+
+#clock {
+  color: @text;
+  border-radius: 0px 1rem 1rem 0px;
+  background-color: @crust;
+  border-radius: 1rem 0px 0px 1rem;
+  padding-left: 12px;
+}
+
+#custom-weather {
+  padding-left: 5px;
+  padding-right: 12px;
+  color: @text;
+  background-color: @crust;
+  border-radius: 0px 1rem 1rem 0px;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @red;
+}
+
+#backlight {
+  color: @yellow;
+}
+
+#backlight,
+#battery {
+  border-radius: 0;
+}
+
+#pulseaudio {
+  color: @maroon;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 1rem;
+}
+
+#custom-music {
+  color: @mauve;
+  border-radius: 1rem;
+}
+
+#custom-lock {
+  border-radius: 1rem 0px 0px 1rem;
+  color: @lavender;
+}
+
+#custom-power {
+  margin-right: 1rem;
+  border-radius: 0px 1rem 1rem 0px;
+  color: @red;
+}
+
+#tray {
+  margin-right: 1rem;
+  border-radius: 1rem;
+  background-color: @crust;
+}
+
+#cpu {
+  color: @red;
+  background-color: @crust;
+}
+
+#memory {
+  color: @yellow;
+  background-color: @crust;
+  padding-left: 12px;
+}
+
+#custom-storage {
+  background-color: @crust;
+  padding-left: 12px;
+  border-radius: 1rem 0px 0px 1rem;
+}
+
+#temperature {
+  background-color: @crust;
+  border-radius: 1rem 1rem 1rem 1rem;
+  margin-left: 18px;
+}
+
+#temperature.critical {
+  background-color: @red;
+}
