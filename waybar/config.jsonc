@@ -15,6 +15,7 @@
     "privacy",
     "bluetooth",
     "custom/storage",
+    "custom/codex",
     "memory",
     "cpu",
     "wireplumber",
@@ -115,6 +116,13 @@
     "return-type": "json",
     "interval": 60,
     "exec": "~/.config/waybar/modules/storage.sh",
+  },
+  "custom/codex": {
+    "format": "{}",
+    "return-type": "json",
+    "interval": 120,
+    "exec": "~/.config/waybar/modules/codex.py",
+    "on-click": "foot -e codex",
   },
   "backlight": {
     "device": "intel_backlight",

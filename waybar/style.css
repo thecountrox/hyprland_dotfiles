@@ -170,3 +170,12 @@
   padding-right: 12px;
   margin-left: 1rem;
 }
+
+/* --- Codex AI usage --- */
+#custom-codex {
+  color: @teal;
+  background-color: @crust;
+  border-radius: 1rem;
+  padding-left: 12px;
+  padding-right: 12px;
+}
