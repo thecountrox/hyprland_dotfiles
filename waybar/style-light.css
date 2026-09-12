@@ -108,21 +108,26 @@
   margin-left: 1rem;
 }
 
+#custom-music {
+  color: @mauve;
+  border-radius: 1rem;
+}
+
 #custom-lock {
   border-radius: 1rem 0px 0px 1rem;
   color: @lavender;
 }
 
 #custom-power {
-  margin-right: 1rem;
   border-radius: 0px 1rem 1rem 0px;
   color: @red;
 }
 
 #tray {
-  margin-right: 1rem;
-  border-radius: 1rem;
   background-color: @crust;
+  border-radius: 0px;
+  padding-left: 10px;
+  padding-right: 0px;
 }
 
 #cpu {
@@ -138,8 +143,6 @@
 
 #custom-storage {
   background-color: @crust;
-  padding-left: 12px;
-  border-radius: 1rem 0px 0px 1rem;
 }
 
 #temperature {
@@ -152,8 +155,30 @@
   background-color: @red;
 }
 
-/* --- For the active window title --- */
+#bluetooth {
+  background-color: @crust;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 1rem 0px 0px 1rem;
+}
+
+window#waybar:not(.empty) #window {
+  /* border: 1px solid @text; */
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 1rem;
+  margin-left: 1rem;
+  background-color: @crust;
+}
+
 #window {
+  background-color: transparent;
+  padding: 0px 5px;
+  margin: 0px;
+  border: none;
+}
+
+#custom-media {
   background-color: @crust;
   border-radius: 1rem;
   padding-left: 12px;
@@ -161,12 +186,34 @@
   margin-left: 1rem;
 }
 
-/* --- For the media player --- */
-#custom-media {
-  color: @mauve;
+#privacy {
   background-color: @crust;
-  border-radius: 1rem;
+  border-radius: 1rem 1rem 1rem 1rem;
   padding-left: 12px;
   padding-right: 12px;
-  margin-left: 1rem;
+  margin-right: 10px;
+}
+
+/* Base style for the traffic module */
+#eta {
+  color: #ffffff;
+  /* Default text color */
+  padding: 0 10px;
+}
+
+/* Styles for the severity classes output by the script */
+#eta.low-traffic {
+  color: #00ff00;
+  /* Green */
+}
+
+#eta.medium-traffic {
+  color: #ffff00;
+  /* Yellow/Orange */
+}
+
+#eta.high-traffic {
+  color: #ff0000;
+  /* Red */
+  font-weight: bold;
 }

@@ -1,0 +1,10 @@
+return function()
+    hl.env("HYPRCURSOR_THEME", "Hackneyed", true)
+    hl.env("HYPRCURSOR_SIZE", "22", true)
+    hl.env("XCURSOR_THEME", "Hackneyed", true)
+    hl.env("XCURSOR_SIZE", "22", true)
+    hl.env("QT_CURSOR_SIZE", "22", true)
+    hl.env("QT_STYLE_OVERRIDE", "kvantum", true)
+    hl.env("LIBVA_DRIVER_NAME", "nvidia")
+    hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+end
