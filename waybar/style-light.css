@@ -186,6 +186,19 @@ window#waybar:not(.empty) #window {
   margin-left: 1rem;
 }
 
+#custom-codex {
+  color: @teal;
+  background-color: @crust;
+}
+
+#custom-codex.warning {
+  color: @peach;
+}
+
+#custom-codex.critical {
+  color: @red;
+}
+
 #privacy {
   background-color: @crust;
   border-radius: 1rem 1rem 1rem 1rem;

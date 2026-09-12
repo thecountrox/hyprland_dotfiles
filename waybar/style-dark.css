@@ -185,3 +185,16 @@ window#waybar:not(.empty) #window {
   padding-right: 12px;
   margin-left: 1rem;
 }
+
+#custom-codex {
+  color: @teal;
+  background-color: @crust;
+}
+
+#custom-codex.warning {
+  color: @peach;
+}
+
+#custom-codex.critical {
+  color: @red;
+}
