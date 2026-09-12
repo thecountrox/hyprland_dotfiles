@@ -210,12 +210,12 @@ def main():
     if p_pct is None and s_pct is None:
         # Limits unreachable: fall back to local token counts.
         if day_total == 0:
-            print(json.dumps({"text": "󰚩  -", "tooltip": "Codex limits unavailable"}))
+            print(json.dumps({"text": "󰚩   -", "tooltip": "Codex limits unavailable"}))
             return
         print(
             json.dumps(
                 {
-                    "text": f"󰚩  {fmt(day_total)}",
+                    "text": f"󰚩   {fmt(day_total)}",
                     "tooltip": f"Codex limits unavailable\ntoday: {fmt(day_total)} tokens",
                 }
             )
@@ -230,7 +230,7 @@ def main():
     s_label = window_label(secondary.get("windowDurationMins"))
 
     klass = "critical" if p_rem <= 10 else "warning" if p_rem <= 30 else ""
-    text = f"󰚩  {p_rem:.0f}%"
+    text = f"󰚩   {p_rem:.0f}%"
     tooltip = (
         f"{p_label} limit: {p_rem:.0f}% remaining, {reset_text(primary.get('resetsAt'))}\n"
         f"{s_label} limit: {s_rem:.0f}% remaining, {reset_text(secondary.get('resetsAt'))}\n"
