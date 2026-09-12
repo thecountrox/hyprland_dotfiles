@@ -224,20 +224,22 @@ def main():
 
     p_pct = p_pct if p_pct is not None else 0
     s_pct = s_pct if s_pct is not None else 0
+    p_rem = 100 - p_pct
+    s_rem = 100 - s_pct
     p_label = window_label(primary.get("windowDurationMins"))
     s_label = window_label(secondary.get("windowDurationMins"))
 
-    klass = "critical" if p_pct >= 90 else "warning" if p_pct >= 70 else ""
-    text = f"󰚩  {p_pct:.0f}%"
+    klass = "critical" if p_rem <= 10 else "warning" if p_rem <= 30 else ""
+    text = f"󰚩  {p_rem:.0f}%"
     tooltip = (
-        f"{p_label} limit: {p_pct:.0f}% used, {reset_text(primary.get('resetsAt'))}\n"
-        f"{s_label} limit: {s_pct:.0f}% used, {reset_text(secondary.get('resetsAt'))}\n"
+        f"{p_label} limit: {p_rem:.0f}% remaining, {reset_text(primary.get('resetsAt'))}\n"
+        f"{s_label} limit: {s_rem:.0f}% remaining, {reset_text(secondary.get('resetsAt'))}\n"
         f"local usage today: {fmt(day_total)} "
         f"(in {fmt(day_in)} / out {fmt(day_out)} / cached {fmt(day_cached)}, "
         f"{nsess} sessions)\n"
         f"local usage 7d: {fmt(week_tokens)}"
     )
-    out = {"text": text, "tooltip": tooltip, "percentage": round(p_pct)}
+    out = {"text": text, "tooltip": tooltip, "percentage": round(p_rem)}
     if klass:
         out["class"] = klass
     print(json.dumps(out))

@@ -189,6 +189,7 @@ window#waybar:not(.empty) #window {
 #custom-codex {
   color: @teal;
   background-color: @crust;
+  padding-right: 12px;
 }
 
 #custom-codex.warning {
