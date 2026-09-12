@@ -179,3 +179,11 @@
   padding-left: 12px;
   padding-right: 12px;
 }
+
+#custom-codex.warning {
+  color: @peach;
+}
+
+#custom-codex.critical {
+  color: @red;
+}
