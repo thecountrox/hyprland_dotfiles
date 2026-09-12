@@ -51,13 +51,23 @@ def reset_text(resets_at):
         return "reset unknown"
     dt = datetime.fromtimestamp(resets_at)
     now = datetime.now()
+    t12 = dt.strftime("%I:%M %p").lstrip("0")
     delta = int((dt - now).total_seconds())
     rel = ""
     if delta > 0:
-        h, m = delta // 3600, (delta % 3600) // 60
-        rel = f" (in {h}h {m}m)" if h else f" (in {m}m)"
-    day = "" if dt.date() == now.date() else dt.strftime(" %a")
-    return f"resets{day} {dt.strftime('%H:%M')}{rel}"
+        d, rem = divmod(delta, 86400)
+        h, rem = divmod(rem, 3600)
+        m = rem // 60
+        parts = []
+        if d:
+            parts.append(f"{d}d")
+        if h or d:
+            parts.append(f"{h}h")
+        parts.append(f"{m}m")
+        rel = " (in " + " ".join(parts) + ")"
+    if dt.date() == now.date():
+        return f"resets today at {t12}{rel}"
+    return f"resets {dt.strftime('%a %b %d')} at {t12}{rel}"
 
 
 def fetch_limits():
@@ -200,12 +210,12 @@ def main():
     if p_pct is None and s_pct is None:
         # Limits unreachable: fall back to local token counts.
         if day_total == 0:
-            print(json.dumps({"text": "󰚩 -", "tooltip": "Codex limits unavailable"}))
+            print(json.dumps({"text": "󰚩  -", "tooltip": "Codex limits unavailable"}))
             return
         print(
             json.dumps(
                 {
-                    "text": f"󰚩 {fmt(day_total)}",
+                    "text": f"󰚩  {fmt(day_total)}",
                     "tooltip": f"Codex limits unavailable\ntoday: {fmt(day_total)} tokens",
                 }
             )
@@ -218,7 +228,7 @@ def main():
     s_label = window_label(secondary.get("windowDurationMins"))
 
     klass = "critical" if p_pct >= 90 else "warning" if p_pct >= 70 else ""
-    text = f"󰚩 {p_pct:.0f}%"
+    text = f"󰚩  {p_pct:.0f}%"
     tooltip = (
         f"{p_label} limit: {p_pct:.0f}% used, {reset_text(primary.get('resetsAt'))}\n"
         f"{s_label} limit: {s_pct:.0f}% used, {reset_text(secondary.get('resetsAt'))}\n"
